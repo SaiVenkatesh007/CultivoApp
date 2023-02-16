@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -43,7 +41,7 @@ class OnboardingScreen extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: ElevatedButton(
                             onPressed: () {},
-                            child: Text("Get Started"),
+                            child: const Text("Get Started"),
                           ),
                         )
                       ],

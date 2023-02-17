@@ -1,7 +1,6 @@
-import 'package:cultivoapp/widgets/bottomnavbar.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/faqtile.dart';
+import 'faqtile.dart';
 
 final qnAns = [
   {
@@ -26,22 +25,17 @@ class FAQScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: const Color(0xff84aea4),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Image.asset("assets/FAQ_Page.png"),
-              FAQTile(question: qnAns[0]['qn']!, ans: qnAns[0]['ans']!),
-              FAQTile(question: qnAns[1]['qn']!, ans: qnAns[1]['ans']!),
-              FAQTile(question: qnAns[2]['qn']!, ans: qnAns[2]['ans']!),
-            ],
-          ),
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Image.asset("assets/FAQ_Page.png"),
+            FAQTile(question: qnAns[0]['qn']!, ans: qnAns[0]['ans']!),
+            FAQTile(question: qnAns[1]['qn']!, ans: qnAns[1]['ans']!),
+            FAQTile(question: qnAns[2]['qn']!, ans: qnAns[2]['ans']!),
+          ],
         ),
       ),
-      bottomNavigationBar: const BottomNav(),
     );
   }
 }

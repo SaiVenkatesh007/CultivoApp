@@ -19,24 +19,27 @@ class CropInput extends StatelessWidget {
         ),
         Container(
           padding: EdgeInsets.only(top: pageHeight * 0.011),
-          height: pageHeight * 0.042,
+          height: pageHeight * 0.044,
           width: pageWidth * 0.311,
           child: TextFormField(
             controller: controller,
+            keyboardType: TextInputType.number,
             textInputAction: TextInputAction.next,
             style: GoogleFonts.inter(
               fontSize: 20,
               color: Colors.white,
             ),
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.symmetric(
+                  vertical: pageHeight * 0.005, horizontal: pageWidth * 0.02,),
               filled: true,
-              fillColor: Color(0xff84AEA4),
-              enabledBorder: OutlineInputBorder(
+              fillColor: const Color(0xff84AEA4),
+              enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
                   color: Color(0xff84AEA4),
                 ),
               ),
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
                   color: Color(0xff84AEA4),
                 ),

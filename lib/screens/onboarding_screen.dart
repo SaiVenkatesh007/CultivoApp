@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import 'feature_screen.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -62,10 +65,17 @@ class OnboardingScreen extends StatelessWidget {
                                 ),
                                 backgroundColor: const Color(0xff133B33),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const FeatureScreen(),
+                                  ),
+                                );
+                              },
                               child: Text(
                                 "Get Started",
-                                style: TextStyle(
+                                style: GoogleFonts.inter(
                                   fontSize: pageWidth * 0.055,
                                   fontWeight: FontWeight.w400,
                                 ),

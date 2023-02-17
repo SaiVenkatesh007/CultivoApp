@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
-import '../widgets/crop_input.dart';
-import '../widgets/bottomnavbar.dart';
+import 'crop_input.dart';
 
 class PredictionScreen extends StatefulWidget {
   const PredictionScreen({super.key});
@@ -16,13 +15,13 @@ class PredictionScreen extends StatefulWidget {
 
 @override
 class _PredictionScreenState extends State<PredictionScreen> {
-  TextEditingController _nController = TextEditingController();
-  TextEditingController _pController = TextEditingController();
-  TextEditingController _kController = TextEditingController();
-  TextEditingController _tempController = TextEditingController();
-  TextEditingController _phController = TextEditingController();
-  TextEditingController _humController = TextEditingController();
-  TextEditingController _rainController = TextEditingController();
+  final TextEditingController _nController = TextEditingController();
+  final TextEditingController _pController = TextEditingController();
+  final TextEditingController _kController = TextEditingController();
+  final TextEditingController _tempController = TextEditingController();
+  final TextEditingController _phController = TextEditingController();
+  final TextEditingController _humController = TextEditingController();
+  final TextEditingController _rainController = TextEditingController();
   late List formData = [
     {'title': 'Nitrogen:', 'controller': _nController},
     {'title': 'Phosphorus:', 'controller': _pController},
@@ -102,10 +101,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
       passData.add(rain);
     }
 
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: const Color(0xff84aea4),
-      body: _isLoading
+    return _isLoading
           ? const Center(
               child: CircularProgressIndicator(
                 color: Color(0xff123A32),
@@ -258,8 +254,6 @@ class _PredictionScreenState extends State<PredictionScreen> {
                   ),
                 ],
               ),
-            ),
-      bottomNavigationBar: BottomNav(),
-    );
+            );
   }
 }

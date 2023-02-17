@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CropInput extends StatelessWidget {
   final String title;
-  final TextEditingController? controller;
-  const CropInput({super.key, required this.title, this.controller});
+  final TextEditingController controller;
+  const CropInput({super.key, required this.title, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +15,11 @@ class CropInput extends StatelessWidget {
       children: [
         Text(
           title,
-          style: GoogleFonts.inter(fontSize: 15),
+          style: GoogleFonts.inter(fontSize: 18),
         ),
         Container(
           padding: EdgeInsets.only(top: pageHeight * 0.011),
-          height: pageHeight * 0.036,
+          height: pageHeight * 0.042,
           width: pageWidth * 0.311,
           child: TextFormField(
             controller: controller,

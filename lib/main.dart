@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import './screens/onboarding_screen.dart';
+import './screens/predict_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: OnboardingScreen(),
+      home: PredictionScreen(),
     );
   }
 }

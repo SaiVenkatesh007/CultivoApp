@@ -13,6 +13,7 @@ class FeatureScreen extends StatefulWidget {
 
 class _FeatureScreenState extends State<FeatureScreen>
     with SingleTickerProviderStateMixin {
+  final PageController _pageController = PageController();
   int _selectedTabIndex = 0;
 
   late TabController _tabController;
@@ -31,6 +32,20 @@ class _FeatureScreenState extends State<FeatureScreen>
     BestCrop(),
     FAQScreen(),
   ];
+
+  void _onPageChanged(int index) {
+    setState(() {
+      _selectedTabIndex = index;
+    });
+  }
+
+  void _onItemTapped(int i) {
+    _pageController.animateToPage(
+      i,
+      duration: const Duration(milliseconds: 700),
+      curve: Curves.ease,
+    );
+  }
 
   Widget _tabItem(Widget child, {bool isSelected = false}) {
     final pageWidth = MediaQuery.of(context).size.width;
@@ -73,7 +88,12 @@ class _FeatureScreenState extends State<FeatureScreen>
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xff84aea4),
-      body: _bodyView[_selectedTabIndex],
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: _onPageChanged,
+        physics: const NeverScrollableScrollPhysics(),
+        children: _bodyView,
+      ),
       bottomNavigationBar: Container(
         height: pageHeight * 0.0875,
         padding: EdgeInsets.only(
@@ -87,11 +107,7 @@ class _FeatureScreenState extends State<FeatureScreen>
           child: Container(
             color: const Color(0xff133B33),
             child: TabBar(
-              onTap: (value) {
-                setState(() {
-                  _selectedTabIndex = value;
-                });
-              },
+              onTap: _onItemTapped,
               indicator: const UnderlineTabIndicator(
                 borderSide: BorderSide.none,
               ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../widgets/crop_input.dart';
+import '../widgets/bottomnavbar.dart';
 
 class PredictionScreen extends StatefulWidget {
   const PredictionScreen({super.key});
@@ -47,6 +48,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
     final pageHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xff84aea4),
       body: SafeArea(
         child: Column(
@@ -207,6 +209,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
           ],
         ),
       ),
+      bottomNavigationBar: BottomNav(),
     );
   }
 }

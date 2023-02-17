@@ -22,26 +22,55 @@ class OnboardingScreen extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: Padding(
                 padding: EdgeInsets.symmetric(
-                    horizontal: pageWidth * 0.03, vertical: pageHeight * 0.02),
+                  horizontal: pageWidth * 0.0972,
+                  vertical: pageHeight * 0.05,
+                ),
                 child: Container(
-                  color: Colors.transparent.withOpacity(0.5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(14),
+                    color: const Color(0xffD9D9D9).withOpacity(0.81),
+                  ),
+                  height: pageHeight * 0.2975,
+                  width: pageWidth * 0.805,
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                        horizontal: pageWidth * 0.06,
-                        vertical: pageHeight * 0.003),
+                      horizontal: pageWidth * 0.078,
+                      vertical: pageHeight * 0.02,
+                    ),
                     child: Column(
-                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        const Text(
-                          "Cultivo us an AI-driven solution for problems faced by farmers. It is a platform to make their work easier and more efficient",
+                        Text(
+                          "Cultivo is an AI-driven solution for problems faced by farmers. It is a platform to make their work easier and more efficient",
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 25, color: Colors.white),
+                          maxLines: 6,
+                          style: TextStyle(
+                            fontSize: pageWidth * 0.056,
+                            color: const Color(0xff133B33),
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            child: const Text("Get Started"),
+                          padding: EdgeInsets.only(top: pageHeight * 0.015),
+                          child: SizedBox(
+                            height: pageHeight * 0.0575,
+                            width: pageWidth * 0.583,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(9),
+                                ),
+                                backgroundColor: const Color(0xff133B33),
+                              ),
+                              onPressed: () {},
+                              child: Text(
+                                "Get Started",
+                                style: TextStyle(
+                                  fontSize: pageWidth * 0.055,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
                           ),
                         )
                       ],

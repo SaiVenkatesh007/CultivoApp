@@ -33,7 +33,7 @@ class OnboardingScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(14),
                     color: const Color(0xffD9D9D9).withOpacity(0.81),
                   ),
-                  height: pageHeight * 0.2975,
+                  height: pageHeight * 0.32,
                   width: pageWidth * 0.805,
                   child: Padding(
                     padding: EdgeInsets.symmetric(
@@ -66,12 +66,7 @@ class OnboardingScreen extends StatelessWidget {
                                 backgroundColor: const Color(0xff133B33),
                               ),
                               onPressed: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const FeatureScreen(),
-                                  ),
-                                );
+                                Navigator.of(context).pushReplacement(_page());
                               },
                               child: Text(
                                 "Get Started",
@@ -94,4 +89,24 @@ class OnboardingScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+Route _page() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) =>
+        const FeatureScreen(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(1.0, 0.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+    transitionDuration: const Duration(milliseconds: 800),
+  );
 }

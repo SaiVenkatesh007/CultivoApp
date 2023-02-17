@@ -20,7 +20,6 @@ class _BottomNavState extends State<BottomNav> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    // TODO: implement initState
     _tabController = TabController(
       length: 3,
       vsync: this,
@@ -42,7 +41,7 @@ class _BottomNavState extends State<BottomNav> with TickerProviderStateMixin {
               color: const Color(0xff84AEA4),
             )
           : BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20 ),
               color: const Color(0xffF1FAF8),
             ),
       child: child,
@@ -51,7 +50,6 @@ class _BottomNavState extends State<BottomNav> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _tabController.dispose();
     super.dispose();
   }

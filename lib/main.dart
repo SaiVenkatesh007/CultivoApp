@@ -1,3 +1,4 @@
+import 'package:cultivoapp/screens/faq.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: BestCrop(),
+      debugShowCheckedModeBanner: false,
+      home: FAQScreen(),
     );
   }
 }

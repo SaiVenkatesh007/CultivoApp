@@ -142,12 +142,14 @@ class _BestCropState extends State<BestCrop> {
                             padding: EdgeInsets.only(
                               bottom: pageHeight * 0.005,
                             ),
-                            child: Text(
-                              "Result",
-                              style: GoogleFonts.inter(
-                                fontSize: 28,
-                                color: const Color(0xff123A32),
-                                fontWeight: FontWeight.bold,
+                            child: Center(
+                              child: Text(
+                                "Result",
+                                style: GoogleFonts.inter(
+                                  fontSize: 28,
+                                  color: const Color(0xff123A32),
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),

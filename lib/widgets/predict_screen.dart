@@ -59,7 +59,8 @@ class _PredictionScreenState extends State<PredictionScreen> {
 
   Future<String> _getResult(List data) async {
     final res = await http.post(
-      Uri.parse('http://192.168.137.1:8000/manual.html/pred'),
+      // Uri.parse('http://192.168.137.1:8000/manual.html/pred'),
+      Uri.parse('http://192.168.1.14:8000/manual.html/pred'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

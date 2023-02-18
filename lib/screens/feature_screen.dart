@@ -84,15 +84,31 @@ class _FeatureScreenState extends State<FeatureScreen>
     ];
     final pageWidth = MediaQuery.of(context).size.width;
     final pageHeight = MediaQuery.of(context).size.height;
-
+    dynamic curTime;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xff84aea4),
-      body: PageView(
-        controller: _pageController,
-        onPageChanged: _onPageChanged,
-        physics: const NeverScrollableScrollPhysics(),
-        children: _bodyView,
+      body: WillPopScope(
+         onWillPop: () {
+          DateTime now = DateTime.now();
+          if (curTime == null ||
+              now.difference(curTime) > const Duration(seconds: 2)) {
+            curTime = now;
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text("Press back again to exit!"),
+              )
+            );
+            return Future.value(false);
+          }
+          return Future.value(true);
+        },
+        child: PageView(
+          controller: _pageController,
+          onPageChanged: _onPageChanged,
+          physics: const NeverScrollableScrollPhysics(),
+          children: _bodyView,
+        ),
       ),
       bottomNavigationBar: Container(
         height: pageHeight * 0.0875,

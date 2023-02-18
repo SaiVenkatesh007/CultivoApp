@@ -172,13 +172,58 @@ class _BestCropState extends State<BestCrop> {
                                 backgroundColor: const Color(0xff133B33),
                               ),
                               onPressed: () {
-                                setState(() {
-                                  _isLoading = true;
-                                  _getData();
-                                  _getResult(data);
-                                  result = _cropController.text.toString().toUpperCase();
-                                  _cropController.clear();
-                                });
+                                if (_cropController.text.isEmpty) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: Text(
+                                        "Input Notice!",
+                                        style: GoogleFonts.inter(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 20,
+                                          color: const Color(0xff65998D),
+                                        ),
+                                      ),
+                                      backgroundColor: const Color(0xff123A32),
+                                      content: Text(
+                                        "Enter the crop to get the values.",
+                                        style: GoogleFonts.inter(
+                                          color: const Color(0xff84AEA4),
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 17,
+                                        ),
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text(
+                                            "Understood",
+                                            style: GoogleFonts.inter(
+                                              fontSize: 14,
+                                              color: const Color(0xffF1FAF8),
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                } else {
+                                  setState(() {
+                                    _isLoading = true;
+                                    _getData();
+                                    _getResult(data);
+                                    result = _cropController.text
+                                        .toString()
+                                        .toUpperCase();
+                                    _cropController.clear();
+                                  });
+                                }
                               },
                               child: Text(
                                 "Submit",

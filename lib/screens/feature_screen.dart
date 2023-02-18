@@ -89,16 +89,14 @@ class _FeatureScreenState extends State<FeatureScreen>
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color(0xff84aea4),
       body: WillPopScope(
-         onWillPop: () {
+        onWillPop: () {
           DateTime now = DateTime.now();
           if (curTime == null ||
               now.difference(curTime) > const Duration(seconds: 2)) {
             curTime = now;
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text("Press back again to exit!"),
-              )
-            );
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text("Press back again to exit!"),
+            ));
             return Future.value(false);
           }
           return Future.value(true);

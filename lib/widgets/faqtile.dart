@@ -40,7 +40,7 @@ class _FAQTileState extends State<FAQTile> {
             style: GoogleFonts.inter(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: const Color(0xff123A32)),
+                color: const Color(0xff123A32),),
           ),
           backgroundColor: const Color(0xffA9DBCF),
           collapsedBackgroundColor: const Color(0xff65998D),

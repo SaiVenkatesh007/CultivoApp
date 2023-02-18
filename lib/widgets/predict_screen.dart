@@ -103,158 +103,207 @@ class _PredictionScreenState extends State<PredictionScreen> {
     }
 
     return _isLoading
-          ? const Center(
-              child: CircularProgressIndicator(
-                color: Color(0xff123A32),
-              ),
-            )
-          : SafeArea(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: pageHeight * 0.031,
-                      left: pageWidth * 0.178,
-                      right: pageWidth * 0.178,
-                    ),
-                    child: Text(
-                      "Crop Prediction",
-                      style: GoogleFonts.inter(
-                        fontSize: 30,
-                        color: const Color(0xff123A32),
-                        fontWeight: FontWeight.bold,
-                      ),
+        ? const Center(
+            child: CircularProgressIndicator(
+              color: Color(0xff123A32),
+            ),
+          )
+        : SafeArea(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: pageHeight * 0.031,
+                    left: pageWidth * 0.178,
+                    right: pageWidth * 0.178,
+                  ),
+                  child: Text(
+                    "Crop Prediction",
+                    style: GoogleFonts.inter(
+                      fontSize: 30,
+                      color: const Color(0xff123A32),
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Padding(
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: pageHeight * 0.017,
+                    left: pageWidth * 0.097,
+                    right: pageWidth * 0.097,
+                  ),
+                  child: Container(
+                    height: pageHeight * 0.78,
+                    width: pageWidth * 0.81,
                     padding: EdgeInsets.only(
-                      top: pageHeight * 0.017,
-                      left: pageWidth * 0.097,
-                      right: pageWidth * 0.097,
+                        top: pageHeight * 0.04, left: pageWidth * 0.05),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: const Color(0xff65998D),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: const Offset(0, 4),
+                          blurRadius: 4,
+                          spreadRadius: 2,
+                          color: Colors.black.withOpacity(0.25),
+                        )
+                      ],
                     ),
-                    child: Container(
-                      height: pageHeight * 0.78,
-                      width: pageWidth * 0.81,
-                      padding: EdgeInsets.only(
-                          top: pageHeight * 0.04, left: pageWidth * 0.05),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: const Color(0xff65998D),
-                        boxShadow: [
-                          BoxShadow(
-                            offset: const Offset(0, 4),
-                            blurRadius: 4,
-                            spreadRadius: 2,
-                            color: Colors.black.withOpacity(0.25),
-                          )
-                        ],
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: pageHeight * 0.24,
-                            width: pageWidth * 0.805,
-                            child: GridView.builder(
-                              itemCount: formData.length - 1,
-                              physics: const NeverScrollableScrollPhysics(),
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                childAspectRatio: pageWidth *
-                                    0.311 /
-                                    (pageHeight * 0.025 + pageHeight * 0.038),
-                              ),
-                              itemBuilder: (context, index) {
-                                return CropInput(
-                                  title: formData[index]['title'],
-                                  controller: formData[index]['controller'],
-                                );
-                              },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: pageHeight * 0.24,
+                          width: pageWidth * 0.805,
+                          child: GridView.builder(
+                            itemCount: formData.length - 1,
+                            physics: const NeverScrollableScrollPhysics(),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio: pageWidth *
+                                  0.311 /
+                                  (pageHeight * 0.025 + pageHeight * 0.038),
                             ),
+                            itemBuilder: (context, index) {
+                              return CropInput(
+                                title: formData[index]['title'],
+                                controller: formData[index]['controller'],
+                              );
+                            },
                           ),
-                          Center(
-                              child: CropInput(
-                            title: formData[formData.length - 1]["title"],
-                            controller: formData[formData.length - 1]
-                                ["controller"],
-                          )),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: pageHeight * 0.044,
-                              left: pageWidth * 0.061,
-                            ),
-                            child: SizedBox(
-                              height: pageHeight * 0.0575,
-                              width: pageWidth * 0.580,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(9),
-                                  ),
-                                  backgroundColor: const Color(0xff133B33),
+                        ),
+                        Center(
+                            child: CropInput(
+                          title: formData[formData.length - 1]["title"],
+                          controller: formData[formData.length - 1]
+                              ["controller"],
+                        )),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: pageHeight * 0.044,
+                            left: pageWidth * 0.061,
+                          ),
+                          child: SizedBox(
+                            height: pageHeight * 0.0575,
+                            width: pageWidth * 0.580,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(9),
                                 ),
-                                onPressed: () {
+                                backgroundColor: const Color(0xff133B33),
+                              ),
+                              onPressed: () {
+                                if (_nController.text.isEmpty ||
+                                    _pController.text.isEmpty ||
+                                    _kController.text.isEmpty ||
+                                    _tempController.text.isEmpty ||
+                                    _phController.text.isEmpty ||
+                                    _humController.text.isEmpty ||
+                                    _rainController.text.isEmpty) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: Text(
+                                        "Input Notice!",
+                                        style: GoogleFonts.inter(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 20,
+                                          color: const Color(0xff65998D),
+                                        ),
+                                      ),
+                                      backgroundColor: const Color(0xff133B33),
+                                      content: Text(
+                                        "Enter the all the fields to get a crop prediction.",
+                                        style: GoogleFonts.inter(
+                                          color: const Color(0xff84AEA4),
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 17,
+                                        ),
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text(
+                                            "Understood",
+                                            style: GoogleFonts.inter(
+                                              fontSize: 14,
+                                              color: const Color(0xffF1FAF8),
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                } else {
                                   setState(() {
                                     _isLoading = true;
                                     getData();
                                     _getResult(passData);
                                     _clearData();
                                   });
-                                },
-                                child: Text(
-                                  "Submit",
-                                  style: TextStyle(
-                                    fontSize: pageWidth * 0.055,
-                                    fontWeight: FontWeight.w400,
-                                  ),
+                                }
+                              },
+                              child: Text(
+                                "Submit",
+                                style: TextStyle(
+                                  fontSize: pageWidth * 0.055,
+                                  fontWeight: FontWeight.w400,
                                 ),
                               ),
                             ),
                           ),
-                          Container(
-                            width: pageWidth * 0.705,
-                            height: pageHeight * 0.265,
-                            margin: EdgeInsets.only(top: pageHeight * 0.043),
-                            // padding: EdgeInsets.only(
-                            //   top: pageHeight * 0.064,
-                            // ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: const Color(0xffB9C6C3).withOpacity(0.55),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Result",
-                                  style: GoogleFonts.inter(
-                                    fontSize: 28,
-                                    color: const Color(0xff123A32),
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                        ),
+                        Container(
+                          width: pageWidth * 0.705,
+                          height: pageHeight * 0.265,
+                          margin: EdgeInsets.only(top: pageHeight * 0.043),
+                          // padding: EdgeInsets.only(
+                          //   top: pageHeight * 0.064,
+                          // ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: const Color(0xffB9C6C3).withOpacity(0.55),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Result",
+                                style: GoogleFonts.inter(
+                                  fontSize: 28,
+                                  color: const Color(0xff123A32),
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                    top: pageHeight * 0.01,
-                                  ),
-                                  child: Text(
-                                    pred,
-                                    textAlign: TextAlign.left,
-                                    style: GoogleFonts.inter(fontSize: 24),
-                                  ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  top: pageHeight * 0.01,
                                 ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+                                child: Text(
+                                  pred,
+                                  textAlign: TextAlign.left,
+                                  style: GoogleFonts.inter(fontSize: 24),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
                     ),
                   ),
-                ],
-              ),
-            );
+                ),
+              ],
+            ),
+          );
   }
 }

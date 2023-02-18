@@ -34,7 +34,9 @@ class _PredictionScreenState extends State<PredictionScreen> {
   var passData = [];
 
   bool _isLoading = false;
-  String pred = "Please give values!";
+  String pred1 = "Please give values";
+  String pred2 = "to get the desired";
+  String pred3 = "Crop Prediction!!";
   @override
   void dispose() {
     _nController.dispose();
@@ -59,8 +61,9 @@ class _PredictionScreenState extends State<PredictionScreen> {
 
   Future<String> _getResult(List data) async {
     final res = await http.post(
-      Uri.parse('http://192.168.137.1:8000/manual.html/pred'),
-      // Uri.parse('http://192.168.1.14:8000/manual.html/pred'),
+      // Uri.parse('http://192.168.137.1:8000/manual.html/test'),
+      // Uri.parse('http://192.168.1.14:8000/manual.html/test'),
+      Uri.parse('https://9c9b-59-92-46-11.in.ngrok.io/manual.html/test'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -70,10 +73,12 @@ class _PredictionScreenState extends State<PredictionScreen> {
     );
     if (res.statusCode == 200) {
       setState(() {
-        pred = jsonDecode(res.body)["result"].toString().toUpperCase();
+        pred1 = jsonDecode(res.body)["result"][0];
+        pred2 = jsonDecode(res.body)["result"][1];
+        pred3 = jsonDecode(res.body)["result"][2];
         _isLoading = false;
       });
-      return jsonDecode(res.body)["result"];
+      return jsonDecode(res.body)["result"][0];
     } else {
       return "Error Fetching Data";
     }
@@ -267,34 +272,32 @@ class _PredictionScreenState extends State<PredictionScreen> {
                           width: pageWidth * 0.705,
                           height: pageHeight * 0.265,
                           margin: EdgeInsets.only(top: pageHeight * 0.043),
-                          // padding: EdgeInsets.only(
-                          //   top: pageHeight * 0.064,
-                          // ),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: pageHeight * 0.03,
+                          ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             color: const Color(0xffB9C6C3).withOpacity(0.55),
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: (pred1 == "Please give values")
+                                ? CrossAxisAlignment.center
+                                : CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                "Result",
-                                style: GoogleFonts.inter(
-                                  fontSize: 28,
-                                  color: const Color(0xff123A32),
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  top: pageHeight * 0.01,
-                                ),
+                              Center(
                                 child: Text(
-                                  pred,
-                                  textAlign: TextAlign.left,
-                                  style: GoogleFonts.inter(fontSize: 24),
+                                  "Result",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 28,
+                                    color: const Color(0xff123A32),
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
+                              ResultContent(pred: pred1),
+                              ResultContent(pred: pred2),
+                              ResultContent(pred: pred3),
                             ],
                           ),
                         )
@@ -305,5 +308,34 @@ class _PredictionScreenState extends State<PredictionScreen> {
               ],
             ),
           );
+  }
+}
+
+class ResultContent extends StatelessWidget {
+  const ResultContent({
+    super.key,
+    required this.pred,
+  });
+
+  final String pred;
+
+  @override
+  Widget build(BuildContext context) {
+    final pageHeight = MediaQuery.of(context).size.height;
+
+    return Padding(
+      padding: EdgeInsets.only(
+        top: pageHeight * 0.01,
+      ),
+      child: Text(
+        pred,
+        textAlign: TextAlign.left,
+        style: GoogleFonts.inter(
+          fontSize: 20,
+          color: const Color(0xff123A32),
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    );
   }
 }

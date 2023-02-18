@@ -32,8 +32,9 @@ class _BestCropState extends State<BestCrop> {
 
   Future<String> _getResult(String data) async {
     final res = await http.post(
-      Uri.parse('http://192.168.137.1:8000/manual.html/bestcrop'),
+      // Uri.parse('http://192.168.137.1:8000/manual.html/bestcrop'),
       // Uri.parse('http://192.168.1.14:8000/manual.html/bestcrop'),
+      Uri.parse('https://9c9b-59-92-46-11.in.ngrok.io/manual.html/bestcrop'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -63,7 +64,7 @@ class _BestCropState extends State<BestCrop> {
     final pageWidth = MediaQuery.of(context).size.width;
     final pageHeight = MediaQuery.of(context).size.height;
     String data = "";
-    void _getData() {
+    void getData() {
       data = _cropController.text.toString().toLowerCase();
     }
 
@@ -216,7 +217,7 @@ class _BestCropState extends State<BestCrop> {
                                 } else {
                                   setState(() {
                                     _isLoading = true;
-                                    _getData();
+                                    getData();
                                     _getResult(data);
                                     result = _cropController.text
                                         .toString()
@@ -306,6 +307,7 @@ class ResultText extends StatelessWidget {
         style: GoogleFonts.inter(
           fontSize: 24,
           color: const Color(0xff123A32),
+          fontWeight: FontWeight.w500,
         ),
       ),
     );

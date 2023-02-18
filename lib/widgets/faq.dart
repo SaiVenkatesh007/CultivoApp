@@ -17,6 +17,16 @@ final qnAns = [
     "qn": "Can I use this on my laptop or through my browser?",
     "ans":
         "Yes, you can use the same through our web client. You can access it in any browser.",
+  },
+  {
+    "qn": "How does the prediction work?",
+    "ans":
+        "The input provided by you is send to out ML model, which processes it and gives the top 3 crop predictions.",
+  },
+  {
+    "qn": "Have more questions?",
+    "ans":
+        "Feel free to put your questions across to us at cultivo.care@gmail.com",
   }
 ];
 
@@ -42,6 +52,8 @@ class FAQScreen extends StatelessWidget {
                     FAQTile(question: qnAns[0]['qn']!, ans: qnAns[0]['ans']!),
                     FAQTile(question: qnAns[1]['qn']!, ans: qnAns[1]['ans']!),
                     FAQTile(question: qnAns[2]['qn']!, ans: qnAns[2]['ans']!),
+                    FAQTile(question: qnAns[3]['qn']!, ans: qnAns[3]['ans']!),
+                    FAQTile(question: qnAns[4]['qn']!, ans: qnAns[4]['ans']!),
                   ],
                 ),
               ),

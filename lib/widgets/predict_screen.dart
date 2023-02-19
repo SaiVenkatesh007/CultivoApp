@@ -63,7 +63,7 @@ class _PredictionScreenState extends State<PredictionScreen> {
     final res = await http.post(
       // Uri.parse('http://192.168.137.1:8000/manual.html/test'),
       // Uri.parse('http://192.168.1.14:8000/manual.html/test'),
-      Uri.parse('https://9c9b-59-92-46-11.in.ngrok.io/manual.html/test'),
+      Uri.parse('https://cc10-59-92-46-175.in.ngrok.io/manual.html/test'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

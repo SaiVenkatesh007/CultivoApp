@@ -299,13 +299,13 @@ class ResultText extends StatelessWidget {
     final pageHeight = MediaQuery.of(context).size.height;
     return Padding(
       padding: EdgeInsets.only(
-        top: pageHeight * 0.0062,
+        top: pageHeight * 0.007,
       ),
       child: Text(
         text,
         textAlign: TextAlign.left,
         style: GoogleFonts.inter(
-          fontSize: 24,
+          fontSize: 20,
           color: const Color(0xff123A32),
           fontWeight: FontWeight.w500,
         ),
